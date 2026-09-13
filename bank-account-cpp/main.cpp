@@ -3,6 +3,30 @@
 #include "Bank.h"
 #include <windows.h>
 
+// безпечне зчитування цілого числа - якщо ввели не число, консоль не зациклюється
+int readInt(const std::string& prompt) {
+    int value;
+    std::cout << prompt;
+    while (!(std::cin >> value)) {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Це не число, спробуй ще раз: ";
+    }
+    return value;
+}
+
+// те саме, тільки для дробових сум
+double readDouble(const std::string& prompt) {
+    double value;
+    std::cout << prompt;
+    while (!(std::cin >> value)) {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Це не число, спробуй ще раз: ";
+    }
+    return value;
+}
+
 void printMenu() {
     std::cout << "\n===== БАНКІВСЬКА СИСТЕМА =====" << std::endl;
     std::cout << "1. Створити рахунок" << std::endl;
@@ -25,29 +49,33 @@ int main() {
 
     while (running) {
         printMenu();
-        std::cin >> choice;
+        choice = readInt("");
 
         switch (choice) {
         case 1: {
-            std::cin.ignore();
+            std::cin.ignore(10000, '\n'); // прибрати залишок Enter після readInt
             std::string name;
-            double startBalance;
             std::cout << "Ім'я власника: ";
             std::getline(std::cin, name);
-            std::cout << "Початковий баланс: ";
-            std::cin >> startBalance;
+
+            if (name.empty()) {
+                std::cout << "Ім'я не може бути порожнім." << std::endl;
+                break;
+            }
+
+            double startBalance = readDouble("Початковий баланс: ");
+            if (startBalance < 0) {
+                std::cout << "Баланс не може бути від'ємним." << std::endl;
+                break;
+            }
 
             int newNumber = bank.createAccount(name, startBalance);
             std::cout << "Створено рахунок #" << newNumber << std::endl;
             break;
         }
         case 2: {
-            int accNum;
-            double amount;
-            std::cout << "Номер рахунку: ";
-            std::cin >> accNum;
-            std::cout << "Сума поповнення: ";
-            std::cin >> amount;
+            int accNum = readInt("Номер рахунку: ");
+            double amount = readDouble("Сума поповнення: ");
 
             bank.deposit(accNum, amount);
             break;
