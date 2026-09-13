@@ -20,6 +20,23 @@ Account* Bank::findAccount(int accountNumber) {
     return nullptr;
 }
 
+bool Bank::deposit(int accountNumber, double amount) {
+    if (amount <= 0) {
+        std::cout << "Помилка: сума поповнення має бути більшою за 0." << std::endl;
+        return false;
+    }
+
+    Account* acc = findAccount(accountNumber);
+    if (acc == nullptr) {
+        std::cout << "Помилка: рахунок #" << accountNumber << " не знайдено." << std::endl;
+        return false;
+    }
+
+    acc->setBalance(acc->getBalance() + amount);
+    std::cout << "Баланс поповнено. Новий баланс: " << acc->getBalance() << " грн" << std::endl;
+    return true;
+}
+
 void Bank::printAllAccounts() const {
     if (accounts.empty()) {
         std::cout << "Рахунків ще немає." << std::endl;

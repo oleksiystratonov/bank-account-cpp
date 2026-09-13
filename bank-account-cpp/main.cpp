@@ -41,21 +41,28 @@ int main() {
             std::cout << "Створено рахунок #" << newNumber << std::endl;
             break;
         }
-        case 2:
-            // TODO: реалізується в картці "Deposit"
-            std::cout << "Ще не реалізовано (картка Deposit)." << std::endl;
+        case 2: {
+            int accNum;
+            double amount;
+            std::cout << "Номер рахунку: ";
+            std::cin >> accNum;
+            std::cout << "Сума поповнення: ";
+            std::cin >> amount;
+
+            bank.deposit(accNum, amount);
             break;
+        }
         case 3:
-            // TODO: реалізується в картці "Withdraw"
-            std::cout << "Ще не реалізовано (картка Withdraw)." << std::endl;
+            // withdraw ще не готовий, буде наступним спринтом
+            std::cout << "Поки не готово, скоро буде." << std::endl;
             break;
         case 4:
-            // TODO: реалізується в картці "Переказ між рахунками"
-            std::cout << "Ще не реалізовано (картка Переказ)." << std::endl;
+            // переказ теж пізніше
+            std::cout << "Поки не готово, скоро буде." << std::endl;
             break;
         case 5:
-            // TODO: реалізується в картці "Виписка по рахунку"
-            std::cout << "Ще не реалізовано (картка Виписка)." << std::endl;
+            // виписка теж пізніше
+            std::cout << "Поки не готово, скоро буде." << std::endl;
             break;
         case 6:
             bank.printAllAccounts();

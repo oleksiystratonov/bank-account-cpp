@@ -10,19 +10,16 @@ private:
     double balance;
 
 public:
-    // Конструктор
     Account(int number, const std::string& owner, double initialBalance = 0.0);
 
-    // Геттери
+    // геттери
     int getAccountNumber() const;
     std::string getOwnerName() const;
     double getBalance() const;
 
-    // Зміна балансу (використовується класом Bank при deposit/withdraw)
-    void setBalance(double newBalance);
+    void setBalance(double newBalance); // баланс міняється тільки через Bank
 
-    // Вивід інформації про рахунок
-    void printInfo() const;
+    void printInfo() const; // вивести дані рахунку в консоль
 };
 
-#endif#pragma once
+#endif
