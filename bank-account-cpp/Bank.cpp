@@ -32,7 +32,7 @@ bool Bank::deposit(int accountNumber, double amount) {
         return false;
     }
 
-    acc->setBalance(acc->getBalance() - amount);
+    acc->setBalance(acc->getBalance() + amount);
     std::cout << "Баланс поповнено. Новий баланс: " << acc->getBalance() << " грн" << std::endl;
     return true;
 }
