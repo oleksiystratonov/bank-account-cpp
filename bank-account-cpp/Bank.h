@@ -18,7 +18,7 @@ public:
     Account* findAccount(int accountNumber); // nullptr якщо такого рахунку нема
 
     bool deposit(int accountNumber, double amount); // true якщо вийшло
-
+    bool withdraw(int accountNumber, double amount);
     void printAllAccounts() const;
 };
 

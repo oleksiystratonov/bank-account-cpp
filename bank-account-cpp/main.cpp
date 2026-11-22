@@ -80,10 +80,12 @@ int main() {
             bank.deposit(accNum, amount);
             break;
         }
-        case 3:
-            // withdraw ще не готовий, буде наступним спринтом
-            std::cout << "Поки не готово, скоро буде." << std::endl;
+        case 3: {
+            int accNum = readInt("Номер рахунку: ");
+            double amount = readDouble("Сума зняття: ");
+            bank.withdraw(accNum, amount);
             break;
+        }
         case 4:
             // переказ теж пізніше
             std::cout << "Поки не готово, скоро буде." << std::endl;
